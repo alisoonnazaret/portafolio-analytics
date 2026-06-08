@@ -1,0 +1,43 @@
+# 🛒 Proyecto 2: SQL Ecommerce Analysis
+
+## Objetivo
+Analizar el comportamiento de compra de clientes en una tienda ecommerce.
+
+## Herramientas
+`SQL` `PostgreSQL`
+
+## Preguntas respondidas
+- ¿Quiénes son los top 10 clientes por ventas?
+- ¿Qué productos se venden más?
+- ¿Cuál es el ticket promedio mensual?
+
+## Consultas principales
+
+### Top clientes por ventas
+```sql
+SELECT customer_id,
+       SUM(sales) AS total_ventas
+FROM orders
+GROUP BY customer_id
+ORDER BY total_ventas DESC
+LIMIT 10;
+```
+
+### Ventas por categoría
+```sql
+SELECT category,
+       COUNT(order_id) AS total_pedidos,
+       SUM(sales) AS ingresos
+FROM orders
+GROUP BY category
+ORDER BY ingresos DESC;
+```
+
+## Hallazgo principal
+El 20% de clientes genera el 80% de los ingresos (Principio de Pareto).
+
+## Archivos
+| Archivo | Descripción |
+|---------|-------------|
+| `queries.sql` | Todas las consultas del análisis |
+| `resultados.csv` | Resultados exportados |
